@@ -32,6 +32,107 @@ Enter all the required details to Import your model. Refer [this link](https://d
 
 The following is a sample Input and Output JSON for this model which you can use while importing this model on Inferless.
 
+### Input
+```json
+{
+  "inputs": [
+    {
+      "data": [
+        "What is your age?"
+      ],
+      "name": "questions",
+      "shape": [
+        1
+      ],
+      "datatype": "BYTES"
+    },
+    {
+      "data": [
+        "I am 20 years old.",
+        "good morning"
+      ],
+      "name": "responses",
+      "shape": [
+        2
+      ],
+      "datatype": "BYTES"
+    },
+    {
+      "data": [
+        "I will be 21 next year.",
+        "great day."
+      ],
+      "name": "response_contexts",
+      "shape": [
+        2
+      ],
+      "datatype": "BYTES"
+    }
+  ]
+}
+```
+
+### Output
+```json
+{
+  "outputs": [
+    {
+      "data": "values",
+      "name": "values",
+      "shape": [
+        1
+      ],
+      "datatype": "BYTES"
+    }
+  ]
+}
+```
+
+---
+## Curl Command
+Following is an example of the curl command you can use to make inference. You can find the exact curl command in the Model's API page in Inferless.
+
+```bash
+curl --location '<your_inference_url>' \
+          --header 'Content-Type: application/json' \
+          --header 'Authorization: Bearer <your_api_key>' \
+          --data '{
+                  "inputs": [
+                    {
+                      "data": [
+                        "What is your age?"
+                      ],
+                      "name": "questions",
+                      "shape": [
+                        1
+                      ],
+                      "datatype": "BYTES"
+                    },
+                    {
+                      "data": [
+                        "I am 20 years old.",
+                        "good morning"
+                      ],
+                      "name": "responses",
+                      "shape": [
+                        2
+                      ],
+                      "datatype": "BYTES"
+                    },
+                    {
+                      "data": [
+                        "I will be 21 next year.",
+                        "great day."
+                      ],
+                      "name": "response_contexts",
+                      "shape": [
+                        2
+                      ],
+                      "datatype": "BYTES"
+                    }
+                  ]
+                }'
+```
 
 ---
 ## Customizing the Code
