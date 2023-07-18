@@ -1,0 +1,8 @@
+build:
+  system_packages:
+    - "libssl-dev"
+    - "tesseract-ocr"
+    - "libtesseract-dev"
+    - "ffmpeg"
+  python_packages:
+    - "tensorflow_text>=2.0.0rc0"
