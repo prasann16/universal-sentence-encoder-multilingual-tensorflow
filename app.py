@@ -15,7 +15,7 @@ class InferlessPythonModel:
         question_embeddings = self.module.signatures['question_encoder'](tf.constant(questions))
         response_embeddings = self.module.signatures['response_encoder'](input=tf.constant(responses), context=tf.constant(response_contexts))
 
-        return np.inner(question_embeddings['outputs'], response_embeddings['outputs'])
+        return {"values" : np.inner(question_embeddings['outputs'], response_embeddings['outputs'])}
 
     def finalize(self):
         self.module = None
