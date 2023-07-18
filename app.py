@@ -20,13 +20,3 @@ class InferlessPythonModel:
     def finalize(self):
         self.module = None
 
-model = InferlessPythonModel()
-model.initialize()
-a = model.infer(
-    {
-        "questions": ["What is your age?"],
-        "responses": ["I am 20 years old.", "good morning"],
-        "response_contexts": ["I will be 21 next year.", "great day."],
-    }
-)
-print(a)
