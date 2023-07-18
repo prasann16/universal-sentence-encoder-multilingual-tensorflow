@@ -77,12 +77,14 @@ The following is a sample Input and Output JSON for this model which you can use
 {
   "outputs": [
     {
-      "data": "values",
       "name": "values",
+      "datatype": "BYTES",
       "shape": [
         1
       ],
-      "datatype": "BYTES"
+      "data": [
+        "[[0.40883985]]"
+      ]
     }
   ]
 }
