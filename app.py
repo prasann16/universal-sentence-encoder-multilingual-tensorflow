@@ -8,14 +8,23 @@ class InferlessPythonModel:
         self.module = hub.load('https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3')
 
     def infer(self, inputs):
-        questions = inputs['questions']
-        responses = inputs['responses']
-        response_contexts = inputs['response_contexts']
+        signature_name = inputs['signature_name']
+        instances = inputs['instances']
 
-        question_embeddings = self.module.signatures['question_encoder'](tf.constant(questions))
-        response_embeddings = self.module.signatures['response_encoder'](input=tf.constant(responses), context=tf.constant(response_contexts))
+        embeddings = []
+        if signature_name == 'question_encoder':
+            embeddings = self.module.signatures['question_encoder'](tf.constant(instances))
+        else:
+            responses = []
+            response_contexts = []
+            for instance in instances:
+                responses = instance['input']
+                response_contexts = instance['context']
 
-        return {"values" : str(np.inner(question_embeddings['outputs'], response_embeddings['outputs']))}
+            embeddings = self.module.signatures['response_encoder'](input=tf.constant(responses), context=tf.constant(response_contexts))
+
+        
+        return {"predictions" : embeddings["outputs"]}
 
     def finalize(self):
         self.module = None
