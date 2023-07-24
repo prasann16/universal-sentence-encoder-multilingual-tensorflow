@@ -2,6 +2,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
 import tensorflow_text
+import json
 
 class InferlessPythonModel:
     def initialize(self):
@@ -9,7 +10,7 @@ class InferlessPythonModel:
 
     def infer(self, inputs):
         signature_name = inputs['signature_name']
-        instances = inputs['instances']
+        instances = json.loads(inputs['instances'])
 
         embeddings = []
         if signature_name == 'question_encoder':
